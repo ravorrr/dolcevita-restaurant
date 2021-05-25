@@ -1,0 +1,27 @@
+@mixin medium {
+    @media screen and (min-width: #{$bp-md}) {
+        @content;
+    }
+}
+
+@mixin large {
+    @media screen and (min-width: #{$bp-lg}) {
+        @content;
+    }
+}
+
+// Tylko TESTOWO!!!
+// h1 {
+//     font-size: $font-base * 3;
+//     color: red;
+
+//     @include medium {
+//         font-size: $font-base * 4;
+//         color: yellow;
+//     }
+
+//     @include large {
+//         font-size: $font-base * 5;
+//         color: blue;
+//     }
+// }
