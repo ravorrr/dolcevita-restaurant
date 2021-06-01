@@ -1,0 +1,19 @@
+.heading {
+
+    &--h1 {
+        color: $color-white;
+        font-size: 6rem;
+        @include medium {
+            font-size: 8rem;
+        }
+        @include large {
+            font-size: 10rem;
+        }
+    }
+
+    &--h2 {
+        font-size: 5rem;
+        width: 100%;
+        text-align: center;
+    }
+}
