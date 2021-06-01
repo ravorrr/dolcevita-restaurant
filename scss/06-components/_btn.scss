@@ -1,0 +1,40 @@
+.btn {
+    color: $color-white;
+    border: none;
+    border-radius: .4rem;
+    display: inline-block;
+    font-size: 2.2rem;
+    font-weight: bold;
+    padding: 1.5rem;
+    text-align: center;
+    width: 20rem;
+    text-decoration: none;
+    transition-duration: .5s;
+
+    &--red {
+        background-color: $color-red;
+        &:hover {
+            background-color: darken($color-red, 10%);
+        }
+    }
+    &--green {
+        background-color: $color-green;
+        &:hover {
+            background-color: darken($color-green, 10%);
+        }
+    }
+    &--outline {
+        background-color: transparent;
+        border: 1px solid $color-white;
+        &:hover {
+            background-color: rgba(255, 255, 255, .3);
+        }
+    }
+    &--circle {
+        border-radius: 50%;
+        width: 10rem;
+        height: 10rem;
+        line-height: 10rem;
+        padding: 0;
+    }
+}
