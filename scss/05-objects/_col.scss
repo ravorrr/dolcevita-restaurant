@@ -1,0 +1,42 @@
+.col {
+    width: 100%;
+    padding: 0 $gutter $gutter $gutter;
+
+    // wg BEM to modyfikatory
+    &--md50 {
+        @include medium {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+    &--md33 {
+        @include medium {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+    }
+    &--md25 {
+        @include medium {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+    }
+    &--lg50 {
+        @include large {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+    &--lg33 {
+        @include large {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+    }
+    &--lg25 {
+        @include large {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+    }
+}

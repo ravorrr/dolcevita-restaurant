@@ -56,7 +56,7 @@ body {
   font-family: 'Italianno', cursive; }
 
 p {
-  font-family: 'Roboto, sans-serif';
+  font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
   line-height: 2.8rem;
   padding: 10px;
@@ -65,5 +65,54 @@ p {
 h2 {
   font-weight: bold;
   font-size: 2.4rem; }
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px; }
+  @media screen and (min-width: 768px) {
+    .container {
+      max-width: 740px; } }
+  @media screen and (min-width: 1240px) {
+    .container {
+      max-width: 1120px; } }
+
+.row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 15px; }
+  @media screen and (min-width: 768px) {
+    .row {
+      flex-direction: row; } }
+
+.col {
+  width: 100%;
+  padding: 0 15px 15px 15px; }
+  @media screen and (min-width: 768px) {
+    .col--md50 {
+      flex: 0 0 50%;
+      max-width: 50%; } }
+  @media screen and (min-width: 768px) {
+    .col--md33 {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%; } }
+  @media screen and (min-width: 768px) {
+    .col--md25 {
+      flex: 0 0 25%;
+      max-width: 25%; } }
+  @media screen and (min-width: 1240px) {
+    .col--lg50 {
+      flex: 0 0 50%;
+      max-width: 50%; } }
+  @media screen and (min-width: 1240px) {
+    .col--lg33 {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%; } }
+  @media screen and (min-width: 1240px) {
+    .col--lg25 {
+      flex: 0 0 25%;
+      max-width: 25%; } }
 
 /*# sourceMappingURL=main.css.map */
