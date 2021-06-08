@@ -1,0 +1,33 @@
+.image-box {
+    border-radius: .6rem;
+    box-shadow: 0px 0px 15px gray;
+
+    &:hover {
+        box-shadow: 0px 0px 25px gray;
+    }
+
+    &__image {
+        background: url('../../assets/img/one.jpg') center/cover no-repeat;
+        height: 22rem;
+        display: block;
+        border-top-left-radius: .6rem;
+        border-top-right-radius: .6rem;
+
+        &--next {
+            background: url('../../assets/img/two.jpeg') center/cover no-repeat;
+        }
+
+        @include medium {
+            height: 16rem;
+        }
+    }
+
+    &__text {
+        text-align: center;
+        padding: .5rem;
+        font-size: 1.6rem;
+        margin: 2rem;
+        cursor: pointer;
+        font-family: roboto, 'sans-serif';
+    }
+}

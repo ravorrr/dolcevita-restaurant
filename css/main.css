@@ -177,6 +177,30 @@ p {
   .nav__link:hover {
     background-color: #74040e; }
 
+.image-box {
+  border-radius: .6rem;
+  box-shadow: 0px 0px 15px gray; }
+  .image-box:hover {
+    box-shadow: 0px 0px 25px gray; }
+  .image-box__image {
+    background: url("../../assets/img/one.jpg") center/cover no-repeat;
+    height: 22rem;
+    display: block;
+    border-top-left-radius: .6rem;
+    border-top-right-radius: .6rem; }
+    .image-box__image--next {
+      background: url("../../assets/img/two.jpeg") center/cover no-repeat; }
+    @media screen and (min-width: 768px) {
+      .image-box__image {
+        height: 16rem; } }
+  .image-box__text {
+    text-align: center;
+    padding: .5rem;
+    font-size: 1.6rem;
+    margin: 2rem;
+    cursor: pointer;
+    font-family: roboto, 'sans-serif'; }
+
 .site-header {
   background: url("../assets/img/start.jpeg") center/cover fixed;
   height: 100vh;
@@ -205,5 +229,19 @@ p {
 .site-section {
   min-height: 70vh;
   padding-top: 3rem; }
+  .site-section--bg-color {
+    background-color: #504533; }
+
+.text-color-white {
+  color: #eff0f3; }
+
+.text-align-center {
+  text-align: center; }
+
+.text-align-right {
+  text-align: right; }
+
+.text-align-justify {
+  text-align: justify; }
 
 /*# sourceMappingURL=main.css.map */
