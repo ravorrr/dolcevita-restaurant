@@ -1,0 +1,21 @@
+.nav {
+    &__item {
+        font-size: 3.2rem;
+        @include medium {
+            display: inline-block;
+            width: 23%;
+        }
+    }
+    &__link {
+        color: $color-white;
+        text-decoration: none;
+        padding: $grid-base;
+        border-radius: .4rem;
+        display: block;
+        transition-duration: .5s;
+        text-align: center;
+        &:hover {
+            background-color: $color-red;
+        }
+    }
+}

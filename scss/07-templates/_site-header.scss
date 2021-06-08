@@ -9,6 +9,13 @@
         height: 100%;
     }
 
+    &__nav {
+        position: absolute;
+        width: 60%;
+        text-align: center;
+        margin-top: $grid-base * 3;
+    }
+
     &__h1 {
         position: absolute;
         bottom: 40%;
