@@ -1,0 +1,38 @@
+.form {
+    width: 95%;
+    font-family: roboto, 'sans-serif';
+
+    @include medium {
+        width: 60%;
+    }
+
+    @include large {
+        width: 40%;
+    }
+
+    &__label {
+        font-size: 1.8rem;
+        margin-bottom: .6rem;
+        display: block;
+    }
+
+    &__item {
+        color: $color-white;
+        display: block;
+        width: 100%;
+        font-size: 1.6rem;
+        padding: 1.4rem;
+        background-color: rgba(0, 0, 0, .4);
+        border: .1rem solid $color-white;
+        border-radius: .4rem;
+        margin-bottom: 1.5rem;
+        outline: 0;
+        resize: none;
+        font-family: inherit;
+
+        &:focus {
+            background-color: rgba(255, 255, 255, .2);
+            // color: $color-white;
+        }
+    }
+}
