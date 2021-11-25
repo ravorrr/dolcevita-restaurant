@@ -1,0 +1,39 @@
+.cookies {
+    display: none;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    line-height: 1.8rem;
+    padding: .5rem;
+    background-color: #000;
+
+    &__text {
+        width: 70%;
+        text-align: justify;
+        @include medium {
+            width: 90%;
+            text-align: center;
+        }
+        padding: 0.5rem;
+    }
+
+    &__close {
+        width: 30%;
+        @include medium {
+            width: 10%;
+        }
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        padding: .5rem;
+        text-align: center;
+
+        & a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.4rem;
+            &:hover {
+                color: red;
+            }
+        }
+    }
+}
