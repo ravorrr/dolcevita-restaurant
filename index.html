@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <link rel="stylesheet" href="css/main.css">
     <title>Restauracja Włoska w Krakowie</title>
 </head>
-<body>
+<body class="site-body">
     <header class="site-header">
         <div class="site-header__blackout blackout"></div>
         <nav>
@@ -93,14 +94,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <form class="form site-contact__form">
+                        <!-- span dla komunikatu o wysyłce maila -->
+                        <span></span>
+                        <form action="php/contact.php" method="post" class="form site-contact__form">
                             <label class="form__label" for="mail">Podaj Twój e-mail</label><br>
-                            <input class="form__item" id="mail"><br>
+                            <input class="form__item" id="mail" name="mail"><br>
                             <label class="form__label" for="subject">Temat wiadomości</label><br>
-                            <input class="form__item" id="subject"><br>
+                            <input class="form__item" id="subject" name="subject"><br>
                             <label class="form__label" for="message">Treść wiadomości</label><br>
-                            <textarea class="form__item" id="message" cols="15" rows="5"></textarea><br>
-                            <input class="form__item btn btn--outline" type="submit" value="Wyślij">
+                            <textarea class="form__item" id="message" name="message" cols="15" rows="5"></textarea><br>
+                            <label class="form__label"></label>
+                            <!-- siteKey testowy dla localhost! -->
+                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-theme="dark"></div><br>
+                            <button class="form__item btn btn--outline" type="submit">Wyślij</button>
                         </form>
                     </div>
                 </div>
@@ -122,6 +128,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/jqueryScript.js"></script>
+    <script src="js/contact.js"></script>
     <script type="module" src="js/scripts.js"></script>
 </body>
 </html>
