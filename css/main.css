@@ -220,13 +220,13 @@ p {
   .image-box:hover {
     box-shadow: 0px 0px 25px gray; }
   .image-box__image {
-    background: url("../../assets/img/one.jpg") center/cover no-repeat;
+    background: url("../assets/img/one.jpg") center/cover no-repeat;
     height: 22rem;
     display: block;
     border-top-left-radius: .6rem;
     border-top-right-radius: .6rem; }
     .image-box__image--next {
-      background: url("../../assets/img/two.jpeg") center/cover no-repeat; }
+      background: url("../assets/img/two.jpeg") center/cover no-repeat; }
     @media screen and (min-width: 768px) {
       .image-box__image {
         height: 16rem; } }

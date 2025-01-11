@@ -7,14 +7,14 @@
     }
 
     &__image {
-        background: url('../../assets/img/one.jpg') center/cover no-repeat;
+        background: url('../assets/img/one.jpg') center/cover no-repeat;
         height: 22rem;
         display: block;
         border-top-left-radius: .6rem;
         border-top-right-radius: .6rem;
 
         &--next {
-            background: url('../../assets/img/two.jpeg') center/cover no-repeat;
+            background: url('../assets/img/two.jpeg') center/cover no-repeat;
         }
 
         @include medium {
