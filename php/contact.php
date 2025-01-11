@@ -1,59 +1,66 @@
 <?php
 header('Content-type: application/json');
 
+function validate_input($data, $min_length = 3) {
+    return htmlspecialchars(trim($data)) && strlen(trim($data)) >= $min_length;
+}
+
+function verify_captcha($captcha_token, $secret_key, $remote_ip) {
+    $url = "https://www.google.com/recaptcha/api/siteverify?secret={$secret_key}&response={$captcha_token}&remoteip={$remote_ip}";
+    $response = file_get_contents($url);
+    if ($response === false) {
+        return ['success' => false, 'error' => 'Błąd połączenia z serwerem CAPTCHA.'];
+    }
+    return json_decode($response, true);
+}
+
 $errors = [];
 
-$mail = trim($_POST['mail']);
-$subject = trim($_POST['subject']);
-$message = trim($_POST['message']);
+// Walidacja danych wejściowych
+$mail = $_POST['mail'] ?? '';
+$subject = $_POST['subject'] ?? '';
+$message = $_POST['message'] ?? '';
+$captcha = $_POST['captchaG'] ?? '';
 
-if(!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-    $errors['mail'] = 'Adres e-mail jest niepoprawny';
+if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+    $errors['mail'] = 'Adres e-mail jest niepoprawny.';
+}
+if (!validate_input($subject)) {
+    $errors['subject'] = 'Temat wiadomości jest za krótki.';
+}
+if (!validate_input($message)) {
+    $errors['message'] = 'Treść wiadomości jest za krótka.';
+}
+if (!$captcha) {
+    $errors['captcha'] = 'Zaznacz "Nie jestem robotem".';
 }
 
-$subject = filter_var($subject, FILTER_SANITIZE_STRING);
-
-if(strlen($subject) < 3) {
-    $errors['subject'] = 'Temat wiadomości jest za krótki';
-}
-
-$message = filter_var($message, FILTER_SANITIZE_STRING);
-
-if(strlen($message) < 3) {
-    $errors['message'] = 'Treść wiadomości jest za krótka';
-}
-
-if(!$_POST['captchaG']) {
-    $errors['captcha'] = 'Zanacz nie jestem robotem';
-}
-
-if(count($errors) === 0) {
-    $captcha = $_POST['captchaG'];
-    // secretKey testowy! dla localhost
-    $secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
-    $response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secret."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
-    if($response['success'] != false){
-        //$capt = 'OK';
-    } else {
-        $error['captcha'] = 'Błąd captcha. Nie można użyć ponownie tej samej weryfikacji.<br><a href="http://localhost">Kliknij tutaj</a> aby odświeżyć stronę i zredagować wiadomość ponownie.';   
+// Weryfikacja CAPTCHA
+if (empty($errors)) {
+    $secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'; // Testowy klucz
+    $captcha_response = verify_captcha($captcha, $secret, $_SERVER['REMOTE_ADDR']);
+    if (!$captcha_response['success']) {
+        $errors['captcha'] = 'Błąd CAPTCHA. Spróbuj ponownie.';
     }
 }
 
-if(count($errors) === 0) {
+// Wysyłanie e-maila
+if (empty($errors)) {
     $to = 'kontakt@ravor.net';
+    $subject_encoded = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $html_message = '<!DOCTYPE html><html lang="pl"><head><meta charset="UTF-8"></head><body>' . htmlspecialchars($message) . '</body></html>';
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: " . htmlspecialchars($mail) . "\r\n";
 
-    $htmlCodeStart = '<!DOCTYPE html><html lang="pl"><head><meta charset="UTF-8"></head><body>';
-    $htmlCodeEnd = '</body></html>';
-    $subject = '=?UTF-8?B?'.base64_encode($subject).'?=';
-    $mailMessage = $htmlCodeStart.$message.$htmlCodeEnd;
-    $headers = "MIME-Version: 1.0\n";
-    $headers .= "Content-type: text/html; charset=UTF-8\n";
-    $headers .= "From: $mail\n";
-
-    $s_mail = mail($to, $subject, $mailMessage, $headers);
-    if($s_mail) {
+    if (mail($to, $subject_encoded, $html_message, $headers)) {
+        http_response_code(200);
         echo json_encode(['success' => 'Dziękujemy, Twoja wiadomość została wysłana.']);
+    } else {
+        http_response_code(500);
+        echo json_encode(['error' => 'Błąd podczas wysyłania wiadomości. Spróbuj ponownie później.']);
     }
 } else {
-    echo json_encode($errors);
+    http_response_code(400);
+    echo json_encode(['errors' => $errors]);
 }
